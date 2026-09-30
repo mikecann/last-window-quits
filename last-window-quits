@@ -2,7 +2,16 @@
 
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# The installed command is a symlink. Find the clone before looking up scripts.
+SOURCE="${BASH_SOURCE[0]}"
+while [[ -L "$SOURCE" ]]; do
+  SCRIPT_DIR="$(cd "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  if [[ "$SOURCE" != /* ]]; then
+    SOURCE="$SCRIPT_DIR/$SOURCE"
+  fi
+done
+SCRIPT_DIR="$(cd "$(dirname "$SOURCE")" && pwd)"
 
 case "${1:-restart}" in
   restart|start)

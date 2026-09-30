@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test Swift package
+        run: swift test
+      - name: Check shell syntax
+        run: |
+          for script in *.sh last-window-quits Tests/*.sh; do
+            bash -n "$script"
+          done
+      - name: Check installer and symlink launcher
+        run: bash Tests/install-tests.sh

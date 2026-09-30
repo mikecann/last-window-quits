@@ -5,7 +5,7 @@ set -euo pipefail
 
 APP_DIR="${LAST_WINDOW_QUITS_APP_DIR:-$HOME/Applications/Last Window Quits.app}"
 APP_BIN="$APP_DIR/Contents/MacOS/last-window-quits"
-PLIST_DIR="$HOME/Library/LaunchAgents"
+PLIST_DIR="${LAST_WINDOW_QUITS_PLIST_DIR:-$HOME/Library/LaunchAgents}"
 PLIST_PATH="$PLIST_DIR/com.mikerosoft.last-window-quits.plist"
 LOG="$HOME/Library/Logs/last-window-quits.log"
 DOMAIN="gui/$(id -u)"
@@ -13,7 +13,7 @@ SERVICE="$DOMAIN/com.mikerosoft.last-window-quits"
 
 if [[ ! -x "$APP_BIN" ]]; then
   echo "ERROR: staged app not found. Build it first:"
-  echo "  bash tools/last-window-quits/build-app.sh"
+  echo "  bash build-app.sh"
   exit 1
 fi
 
