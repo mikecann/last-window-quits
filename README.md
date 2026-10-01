@@ -5,10 +5,10 @@ Close an app's last window and the app actually quits, like on Windows
 macOS 13 or later
 
 <!-- media: hero -->
-<!-- ![last-window-quits](docs/hero.png) -->
-<!-- media: hero -->
+![Closing Preview's last window, and Preview quitting so it disappears from the taskbar](docs/before-after.png)
 
-![A macOS-style window dissolving as its Dock icon powers down](docs/header.webp)
+[Watch it run (8 seconds)](docs/demo.mp4)
+<!-- /media: hero -->
 
 ## What it is
 
